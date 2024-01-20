@@ -6,3 +6,10 @@
 //
 
 import Foundation
+import Observation
+
+class ProfileViewViewModel {
+    init() {
+        
+    }
+}

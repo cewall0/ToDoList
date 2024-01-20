@@ -6,3 +6,11 @@
 //
 
 import Foundation
+import Observation
+
+@Observable
+class NewItemViewViewModel {
+    init() {
+        
+    }
+}
