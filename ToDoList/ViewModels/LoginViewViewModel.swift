@@ -6,3 +6,15 @@
 //
 
 import Foundation
+import Observation // need for our @Observable wrapper
+
+@Observable
+class LoginViewViewModel {
+    var email = ""
+    var password = ""
+    
+    // a basic initializer that uses the default variables
+    init() {
+        
+    } // end init
+} // end class
