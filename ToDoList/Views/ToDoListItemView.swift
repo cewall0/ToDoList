@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ToDoListItemView: View {
     var viewModel = ToDoListItemViewViewModel()
-    let item: ToDoListItem
+    var item: ToDoListItem
     
     
     var body: some View {

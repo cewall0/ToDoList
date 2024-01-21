@@ -9,14 +9,16 @@ import SwiftUI
 import FirebaseFirestore
 
 struct ToDoListView: View {
-    @Bindable var viewModel = ToDoListViewViewModel()
+    @Bindable var viewModel: ToDoListViewViewModel // viewModel is of type ToDoListViewViewModel (we are not instantiating here. We do that in the init a bit later down.
     @FirestoreQuery var items: [ToDoListItem] // A query that continuously listens for items if type: an array of the ToDoListItem model structs. This list differs depending on the user signed in.
     
-    init(userID: String){ // we initialize this struct. we must pass in a string that is the current user's userID. We use that userID to get all of the titems. The underscore of the self._items is conventino for a variable for a wrapper (@FirestoreQuery).
+    init(userID: String){ // we initialize this struct. we must pass in a string that is the current user's userID. We use that userID to get all of the titems. The underscore of the self._items is convention for a variable for a wrapper (@FirestoreQuery).
         self._items = FirestoreQuery(
             collectionPath: "users/\(userID)/todos" // This is the path to the idems in the todos collection of the db for the current user.
         )
-    }
+        // And we will also instantiate the viewModel and pass in the user's userID.
+        self.viewModel = ToDoListViewViewModel(userID: userID)
+    } // ene init
     
     var body: some View {
         NavigationView {
@@ -25,13 +27,11 @@ struct ToDoListView: View {
                 List(items) { item in
                     ToDoListItemView(item: item)
                         .swipeActions{
-                            Button{
+                            Button("Delete"){
                                 // Delete
                                 viewModel.delete(id: item.id) // pass the item's id to the viewModel to run the delete function.
-                            } label: {
-                                Text("delete")
-                                    .foregroundColor(.red)
                             }
+                            .tint(.red)
                         }
                 }
                 .listStyle(PlainListStyle())

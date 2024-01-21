@@ -17,7 +17,7 @@ class ToDoListItemViewViewModel {
     
     
     func toggleIsDone(item: ToDoListItem){
-        // toggle check mark
+//        item.isDone.toggle()
     }
     
 
