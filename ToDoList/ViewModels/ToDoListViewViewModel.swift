@@ -18,7 +18,7 @@ class ToDoListViewViewModel {
         
     }
     
-    func save() {
-        
+    func delete(id: String){
+        // delete code
     }
 }

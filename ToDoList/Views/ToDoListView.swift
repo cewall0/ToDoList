@@ -6,20 +6,35 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
 
 struct ToDoListView: View {
     @Bindable var viewModel = ToDoListViewViewModel()
+    @FirestoreQuery var items: [ToDoListItem] // A query that continuously listens for items if type: an array of the ToDoListItem model structs. This list differs depending on the user signed in.
     
-    private let userID: String
-    
-    init(userID: String){
-        self.userID = userID
+    init(userID: String){ // we initialize this struct. we must pass in a string that is the current user's userID. We use that userID to get all of the titems. The underscore of the self._items is conventino for a variable for a wrapper (@FirestoreQuery).
+        self._items = FirestoreQuery(
+            collectionPath: "users/\(userID)/todos" // This is the path to the idems in the todos collection of the db for the current user.
+        )
     }
     
     var body: some View {
         NavigationView {
             VStack{
-                
+                // a list of our todo items
+                List(items) { item in
+                    ToDoListItemView(item: item)
+                        .swipeActions{
+                            Button{
+                                // Delete
+                                viewModel.delete(id: item.id) // pass the item's id to the viewModel to run the delete function.
+                            } label: {
+                                Text("delete")
+                                    .foregroundColor(.red)
+                            }
+                        }
+                }
+                .listStyle(PlainListStyle())
             }
             .navigationTitle("To Do List") // title at top of Navigation View
             .toolbar { // at top of screen
@@ -37,5 +52,5 @@ struct ToDoListView: View {
 }
 
 #Preview {
-    ToDoListView(userID: "")
+    ToDoListView(userID: "YJjkbb9diSabQAmCewSBGg2lV0d2") // copied userID for one user from the firebase db.
 }

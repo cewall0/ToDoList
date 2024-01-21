@@ -14,4 +14,11 @@ class ToDoListItemViewViewModel {
     init() {
         
     }
+    
+    
+    func toggleIsDone(item: ToDoListItem){
+        // toggle check mark
+    }
+    
+
 }
