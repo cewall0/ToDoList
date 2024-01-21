@@ -12,7 +12,13 @@ import Observation
 // primary tab
 @Observable
 class ToDoListViewViewModel {
+    var showingNewItemView = false
+    
     init() {
+        
+    }
+    
+    func save() {
         
     }
 }
