@@ -13,6 +13,7 @@ struct MainView: View {
     
     var body: some View {
 
+        // checking if someone is signed in (viewModel.isSignedIn is true if someone is signed in) and mamking sure the current userID is not empty - then we can show the account View tabs. Else, someone needs to log in to we will show the login view.
         if viewModel.isSignedIn, !viewModel.currentUserID.isEmpty {
             // signed in so go to the ToDoList
             accountView // see the computer property below with the @ViewBuilder closure/wrapper. This abstracts the tab view

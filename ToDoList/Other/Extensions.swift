@@ -7,7 +7,7 @@
 
 import Foundation
 
-// Encodable is the part of codable protocol which is responsible for encoding it into data
+// Encodable is the part of codable protocol (being used in the User model) which is responsible for encoding it into data
 extension Encodable {
     func asDictionary() -> [String: Any] { // returns a dictionary of String and Any
         guard let data = try? JSONEncoder().encode(self) else { // data is the data from the current thing that is encodable. We are trying to encode self. We use try optional to encode the current (self) and if we fail the Guard will return an empty dictionary.

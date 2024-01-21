@@ -10,7 +10,6 @@ import SwiftUI
 struct ProfileView: View {
     var viewModel = ProfileViewViewModel()
 
-    
     var body: some View {
         NavigationView {
             VStack{
